@@ -2,6 +2,7 @@
 Just a simple showcase fullstack app built in SpringBoot and Angular.
 # TODO
 The app is all good to go but need to conifgure the docker enviroment so it can be run from one place with one command. 
+And fix the repository. For now its better to download separetly fron branch backend and branch frontend.
 # The rest of description is in Polish
 # ------------------------------------
 # Backend Showcasow'ej aplikacji wyszukiwarki Ofert Pracy w Spring'u
