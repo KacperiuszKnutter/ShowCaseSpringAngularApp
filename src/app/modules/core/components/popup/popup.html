@@ -1,0 +1,46 @@
+<!-- Tytuł dialogu = Nazwa Stanowiska -->
+<h2 mat-dialog-title>
+  {{ data.nazwaStanowiska }}
+  <span class="company-subtitle">w {{ data.nazwaFirmy }}</span>
+</h2>
+
+<mat-dialog-content class="mat-typography popup-content">
+
+  <!-- Sekcja Lokalizacji i Płac -->
+  <div class="meta-info">
+    <div class="meta-item">
+      <mat-icon>place</mat-icon>
+      <span>{{ data.nazwaMiasta }}</span>
+    </div>
+    <div class="meta-item salary">
+      <mat-icon>payments</mat-icon>
+      <span>{{ data.widelkiMin }} - {{ data.widelkiMax }} PLN</span>
+    </div>
+  </div>
+
+  <!-- Opis Oferty -->
+  <h3>Opis stanowiska</h3>
+  <p class="description-text">
+    {{ data.krotkiOpis || 'Brak dodatkowego opisu dla tej oferty.' }}
+  </p>
+
+  <!-- Sekcja Technologii -->
+  @if (data.technologie && data.technologie.length > 0) {
+    <h3>Wymagane technologie</h3>
+    <div class="tech-chips">
+      <!-- Wyświetlamy listę technologii -->
+      @for (tech of data.technologie; track tech) {
+        <span class="tech-badge">{{ tech }}</span>
+      }
+    </div>
+  }
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Zamknij</button>
+  <!-- Przycisk Aplikuj (na razie zamyka z true) -->
+  <button mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>
+    Aplikuj teraz
+  </button>
+</mat-dialog-actions>

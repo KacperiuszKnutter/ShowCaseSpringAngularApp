@@ -1,0 +1,77 @@
+// Kontener zajmujący większość ekranu, centrujący kartę
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; // Wycentruj w pionie (nie na samej górze)
+  padding: 20px;
+  background-color: transparent;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px; // Maksymalna szerokość karty
+  border-radius: 16px; // Nowoczesne zaokrąglenie
+  padding: 24px 16px;
+  background-color: var(--mat-sys-surface-container-low); // Tło karty (lekki fiolet)
+
+  // Cień dla głębi
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+  justify-content: center;
+  margin-bottom: 24px;
+  text-align: center;
+
+  mat-card-title {
+    font-size: 1.8rem;
+    color: var(--mat-sys-primary);
+    margin-bottom: 8px;
+  }
+
+  mat-card-subtitle {
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+// Style dla pól formularza
+.full-width {
+  width: 100%;
+  margin-bottom: 12px;
+
+  // Upewnij się, że ikony wewnątrz pola są widoczne i mają odpowiedni kolor
+  mat-icon {
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+
+  .login-btn {
+    width: 100%;
+    padding: 24px 0; // Wyższy, wygodniejszy przycisk
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-bottom: 8px;
+  color: var(--mat-sys-on-surface-variant);
+
+  a {
+    color: var(--mat-sys-primary);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

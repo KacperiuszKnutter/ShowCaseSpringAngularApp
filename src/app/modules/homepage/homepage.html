@@ -1,0 +1,146 @@
+<div class="homepage-container">
+
+  <div class="hero-section">
+    @if (!isFavoritesMode) {
+    @if(isLoggedIn$ | async){
+      <h1>Witaj ponownie {{userObj$.username}}</h1>
+      <p>Przeglądaj i  dodawaj oferty do ulubionych by o nich nie zapomnieć!.</p>
+    } @else {
+      <h1>Znajdź swoją wymarzoną pracę w IT</h1>
+      <p>Przeglądaj najnowsze oferty i zaloguj się by aplikować już dziś.</p>
+    }
+    } @else {
+      <h1>Oto twoje dotychczasowe ulubione oferty!</h1>
+    }
+    @if (!isFavoritesMode) {
+    <!-- Sekcja Filtrów -->
+    <form [formGroup]="filterForm" (ngSubmit)="applyFilters()" class="filters-container">
+
+      <div class="filters-row">
+        <!-- Pole Miasto -->
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Miasto</mat-label>
+          <input matInput formControlName="nazwaMiasta" placeholder="np. Warszawa">
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+
+        <!-- Pole Firma -->
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Firma</mat-label>
+          <input matInput formControlName="nazwaFirmy" placeholder="np. Google">
+          <mat-icon matSuffix>business</mat-icon>
+        </mat-form-field>
+
+        <!-- Pole Województwo (można zmienić na Select w przyszłości) -->
+        <mat-form-field appearance="outline" class="filter-field">
+          <mat-label>Kod Woj.</mat-label>
+          <input matInput formControlName="kodWoj" placeholder="np. wpisz MZ od Mazowieckie" maxlength="3">
+          <mat-icon matSuffix>map</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <!-- Wiersz z Suwakiem Widełek -->
+      <div class="slider-row">
+        <span class="slider-label">Wynagrodzenie (PLN):</span>
+        <mat-slider min="0" max="50000" step="1000" showTickMarks discrete [displayWith]="formatLabel">
+          <input matSliderStartThumb formControlName="widelkiMin">
+          <input matSliderEndThumb formControlName="widelkiMax">
+        </mat-slider>
+        <!-- Wyświetlanie aktualnie wybranych wartości -->
+        <span class="slider-values">
+                 {{ filterForm.get('widelkiMin')?.value }} - {{ filterForm.get('widelkiMax')?.value }}
+             </span>
+      </div>
+
+      <!-- Przyciski Akcji -->
+      <div class="filter-actions">
+        <button mat-button type="button" (click)="clearFilters()">Wyczyść</button>
+        <button mat-flat-button color="primary" type="submit">
+          <mat-icon>search</mat-icon>
+          Szukaj
+        </button>
+      </div>
+
+    </form>
+    }
+  </div>
+
+  <!-- Tabela -->
+  <mat-card class="table-card">
+
+    @if (isLoading) {
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" class="offers-table">
+
+        <!-- Kolumna: Stanowisko -->
+        <ng-container matColumnDef="stanowisko">
+          <th mat-header-cell *matHeaderCellDef> Stanowisko </th>
+          <td mat-cell *matCellDef="let offer">
+            <span class="position-title">{{ offer.nazwaStanowiska }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Kolumna: Firma -->
+        <ng-container matColumnDef="firma">
+          <th mat-header-cell *matHeaderCellDef> Firma </th>
+          <td mat-cell *matCellDef="let offer">
+            <span class="company-name">{{ offer.nazwaFirmy }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Kolumna: Miasto -->
+        <ng-container matColumnDef="miasto">
+          <th mat-header-cell *matHeaderCellDef> Miasto </th>
+          <td mat-cell *matCellDef="let offer"> {{ offer.nazwaMiasta }} </td>
+        </ng-container>
+
+        <!-- Kolumna: Wynagrodzenie -->
+        <ng-container matColumnDef="wynagrodzenie">
+          <th mat-header-cell *matHeaderCellDef> Wynagrodzenie </th>
+          <td mat-cell *matCellDef="let offer">
+            <span class="salary-badge">
+              {{ offer.widelkiMin }} - {{ offer.widelkiMax }} PLN
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Kolumna: Akcje -->
+        <ng-container matColumnDef="akcje">
+          <th mat-header-cell *matHeaderCellDef class="center-header"> </th>
+          <td mat-cell *matCellDef="let offer">
+            <div class="action-buttons">
+              <button mat-button color="primary" (click)="openDialog(offer)">Szczegóły</button>
+
+              <button mat-icon-button
+                      (click)="toggleFavorite(offer, $event)"
+                      [color]="offer.isLiked ? 'warn' : ''">
+                <mat-icon>{{ offer.isLiked ? 'favorite' : 'favorite_border' }}</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell no-data" colspan="5">
+            Brak ofert spełniających kryteria.
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <mat-paginator
+      [length]="totalElements"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 20, 50]"
+      [pageIndex]="pageIndex"
+      (page)="onPageChange($event)"
+      aria-label="Wybierz stronę ofert">
+    </mat-paginator>
+  </mat-card>
+</div>
