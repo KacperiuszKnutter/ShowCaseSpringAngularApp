@@ -1,0 +1,8 @@
+### GET request to example server
+POST http://localhost:8080/api/auth/rejestracja
+Content-Type: application/json
+
+{
+  "email": "test@user.pl",
+  "password": "password123"
+}

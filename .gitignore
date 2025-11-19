@@ -1,0 +1,89 @@
+
+
+/application.properties
+/application.yml
+/application.yaml
+/src/main/resources/application.properties
+#Pliki środowiskowe (często używane do przechowywania sekretów)
+
+.env
+.env.*
+!.env.example
+
+
+
+#Główny folder builda Mavena
+
+target/
+
+#Główny folder builda Gradle
+
+build/
+out/
+
+#Zbudowane artefakty
+
+*.jar
+*.war
+*.ear
+
+#Plik binarny Maven Wrappera (z Twojej oryginalnej listy)
+
+.mvn/wrapper/maven-wrapper.jar
+
+#Pliki backupowe Mavena
+
+pom.xml.bak
+pom.xml.releaseBackup
+
+
+#Logi
+
+
+*.log
+logs/
+
+
+
+#IntelliJ IDEA
+
+# cały folder ustawień projektu
+
+.idea/
+
+# Ignoruje pliki modułów (są one specyficzne dla lokalnej maszyny)
+
+*.iml
+*.iws
+*.ipr
+
+VS Code
+
+.vscode/
+
+# Eclipse / STS
+
+.classpath
+.project
+.settings/
+.factorypath
+.apt_generated
+.springBeans
+.sts4-cache
+
+# NetBeans
+
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+
+
+#Pliki Systemu Operacyjnego ("Śmieci")
+
+.DS_Store
+.DS_Store?
+Thumbs.db
+desktop.ini
