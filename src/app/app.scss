@@ -1,0 +1,6 @@
+
+@use "../styles/vars" as v;
+
+.test {
+  color: v.$color-main;
+}

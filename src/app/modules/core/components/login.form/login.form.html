@@ -1,0 +1,78 @@
+<div class="login-container">
+  <mat-card class="login-card">
+
+    <mat-card-header class="login-header">
+      <mat-card-title>Zaloguj się</mat-card-title>
+      <mat-card-subtitle>Uzyskaj dostęp do swoich ulubionych ofert</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form #f="ngForm" (ngSubmit)="f.form.valid && onLogin()">
+
+        <!-- Pole Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            [(ngModel)]="userData.email"
+            required
+            minlength="4"
+            maxlength="50"
+            autocomplete="username"
+            #emailInput="ngModel">
+          <mat-icon matSuffix>email</mat-icon>
+
+          <!-- Walidacja -->
+          @if (emailInput.invalid && (emailInput.dirty || emailInput.touched)) {
+            <mat-error>Podaj poprawny adres email</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Pole Hasło -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Hasło</mat-label>
+          <input
+            matInput
+            [type]="hide() ? 'password' : 'text'"
+            name="password"
+            [(ngModel)]="userData.password"
+            required
+            autocomplete="current-password">
+
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            type="button"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()">
+            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+          <mat-error>Hasło jest wymagane</mat-error>
+        </mat-form-field>
+
+        <!-- Przycisk Logowania -->
+        <div class="actions">
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            class="login-btn"
+            [disabled]="!f.valid">
+            Zaloguj się
+          </button>
+        </div>
+
+      </form>
+    </mat-card-content>
+
+    <!-- Opcjonalnie: Stopka z linkiem do rejestracji -->
+    <mat-card-footer class="login-footer">
+      <p>Nie masz konta? <a routerLink="/rejestracja">Zarejestruj się</a></p>
+    </mat-card-footer>
+
+  </mat-card>
+</div>

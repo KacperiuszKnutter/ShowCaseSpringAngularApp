@@ -1,0 +1,28 @@
+mat-toolbar {
+  // Ustawiamy flexbox i odstępy
+  display: flex;
+  gap: 16px;
+
+  // Główny styl paska (Primary - zazwyczaj fiolet/granat)
+  &[color="primary"] {
+    background: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+
+    // Ikony i tekst bezpośrednio na pasku mają być jasne (kontrastowe do primary)
+    > .mat-icon, > span {
+      color: var(--mat-sys-on-primary);
+    }
+
+
+    button:not([mat-fab]) {
+      background-color: var(--mat-sys-tertiary-container);
+      color: var(--mat-sys-on-tertiary-container);
+
+      border-radius: 8px;
+    }
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -1,0 +1,27 @@
+<nav>
+  <mat-toolbar color="primary">
+    <span> </span>
+    <span class="spacer"></span>
+    @if (isLoggedIn$ | async) {
+      @if(isFavPage$ | async){
+        <button mat-flat-button routerLink="/">
+          Powrót
+        </button>
+      } @else {
+        <button mat-flat-button routerLink="/ulubione">
+          <mat-icon>favorite</mat-icon>
+          Ulubione Oferty
+        </button>
+      }
+
+      <button mat-flat-button (click)="logout()">
+        Wyloguj się</button>
+
+
+    } @else {
+      <button mat-flat-button routerLink="/logowanie">
+        Logowanie</button>
+    }
+  </mat-toolbar>
+</nav>
+

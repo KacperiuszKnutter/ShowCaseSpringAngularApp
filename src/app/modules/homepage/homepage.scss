@@ -1,0 +1,179 @@
+.homepage-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 30px;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--mat-sys-primary);
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+.table-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--mat-sys-surface-container-low);
+}
+
+.offers-table {
+  width: 100%;
+  background-color: transparent;
+
+  th.mat-header-cell {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--mat-sys-primary);
+    border-bottom-color: var(--mat-sys-outline-variant);
+
+    // ✅ Nowość: Centrowanie nagłówka "Akcje"
+    &.center-header {
+      text-align: center;
+      // W Material Table nagłówki domyślnie są flex-start, więc trzeba nadpisać:
+      .mat-sort-header-container {
+        justify-content: center;
+      }
+    }
+  }
+
+  td.mat-cell {
+    color: var(--mat-sys-on-surface);
+    border-bottom-color: var(--mat-sys-outline-variant);
+    padding: 16px;
+  }
+
+  .position-title {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .company-name {
+    font-weight: 500;
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  .salary-badge {
+    background-color: var(--mat-sys-tertiary-container);
+    color: var(--mat-sys-on-tertiary-container);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+
+  .action-buttons {
+    display: flex;           // Włączamy Flexbox
+    justify-content: center; // Centrujemy w poziomie
+    align-items: start;     // Centrujemy w pionie (równa wysokość)
+    gap: 8px;                // Odstęp między przyciskami (zamiast margin)
+  }
+
+  tr.mat-row:hover {
+    background-color: var(--mat-sys-primary-container);
+    cursor: pointer;
+  }
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: var(--mat-sys-on-surface-variant);
+  font-style: italic;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.filters-container {
+  background-color: var(--mat-sys-surface); // Tło panelu filtrów
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); // Lekki cień
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 1000px; // Żeby nie były za szerokie
+  margin-left: auto;
+  margin-right: auto;
+
+  .filters-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap; // Żeby inputy spadały na mobilkach
+
+    .filter-field {
+      flex: 1; // Każde pole zajmuje równą szerokość
+      min-width: 200px;
+    }
+  }
+
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 8px;
+
+    .slider-label {
+      font-weight: 500;
+      color: var(--mat-sys-on-surface-variant);
+      min-width: 150px;
+    }
+
+    mat-slider {
+      flex: 1; // Slider zajmuje resztę miejsca
+      width: 100%;
+    }
+
+    .slider-values {
+      font-weight: bold;
+      color: var(--mat-sys-primary);
+      min-width: 120px;
+      text-align: right;
+    }
+  }
+
+  .filter-actions {
+    display: flex;
+    justify-content: flex-end; // Przyciski do prawej
+    gap: 12px;
+    margin-top: 8px;
+
+    // Trochę większy przycisk szukaj
+    button[type="submit"] {
+      padding: 20px 32px;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+
+.table-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--mat-sys-surface-container-low);
+}
+
+.offers-table {
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+}
